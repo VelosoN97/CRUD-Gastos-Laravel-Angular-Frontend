@@ -38,7 +38,8 @@
             ],
             "styles": [
               "node_modules/remixicon/fonts/remixicon.css",
-              "src/styles.css"
+              "src/styles.scss"
+              
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -99,7 +100,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
