@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpenseService } from '../../services/expense.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Toastify from 'toastify-js';
 
 @Component({
   selector: 'app-form',
@@ -30,10 +31,12 @@ export class FormComponent implements OnInit {
   saveExpense(): void{
     if(this.expenseId){
       this.expenseService.updateExpense(this.expenseId, this.expenseForm.value).subscribe(expense => {
+        this.showSuccessToast("Gasto actualizado con éxito");
         this.router.navigateByUrl('/gastos');
       });
     } else {
       this.expenseService.createExpense(this.expenseForm.value).subscribe(expense => {
+        this.showSuccessToast("Gasto agregado correctamente");
         this.router.navigateByUrl('/gastos');
       });
     }
@@ -71,5 +74,18 @@ export class FormComponent implements OnInit {
         this.expenseForm.patchValue(expense);
       });
     }
+  }
+
+  private showSuccessToast(message: string): void{
+    Toastify({
+      text: message,
+      close: true,
+      gravity: "bottom",
+      position: "center",
+      stopOnFocus: true,
+      style: {
+        background: "#189586",
+      }
+    }).showToast();
   }
 }
